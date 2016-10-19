@@ -1,6 +1,6 @@
 # configuration variables
-USER = kujenga
-REPO = docker-gae-go
+USER = dakom
+REPO = gae-launcher
 
 build:
 	docker build -t $(USER)/$(REPO) .

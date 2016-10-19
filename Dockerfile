@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Aaron Taylor <ataylor0123@gmail.com>
+MAINTAINER David Komer <david.komer@gmail.com>
 
 RUN apt-get update && apt-get install -y \
 	gcc \
@@ -12,6 +12,10 @@ ENV GAE_VERSION "1.9.40"
 # Google App Engine SDK
 RUN curl https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-${GAE_VERSION}.zip > /appengine.zip
 RUN unzip -q /appengine.zip -d /appengine
+
+# update the appserver config to allow fast rebuilds
+COPY go_application.py /appengine/go_appengine/google/appengine/tools/devappserver2/go_application.py
+
 # configure the SDK to not check for updates
 RUN printf 'opt_in: false\ntimestamp: 0.0\n' > ~/.appcfg_nag
 # configure the PATH to make the SDK tools available
@@ -32,4 +36,3 @@ VOLUME ["/go"]
 EXPOSE 8000 8080-8090
 
 # ENTRYPOINT ["dev_appserver.py"]
-

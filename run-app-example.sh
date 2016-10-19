@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-export PROJ='testapp'
 export LOG_LVL='debug'
 
 APPS=( "$@" )
@@ -35,10 +34,10 @@ docker run \
     -p 8000:8000 \
     -p 8080-8090:8080-8090 \
     -v "$GOPATH":/go \
-    kujenga/docker-gae-go \
+    dakom/gae-launcher \
     dev_appserver.py \
     --host='0.0.0.0' \
-    --application="$PROJ" \
+    --admin_host='0.0.0.0' \
     --log_level="$LOG_LVL" \
     --dev_appserver_log_level="$LOG_LVL" \
     "${APPS[@]}"
