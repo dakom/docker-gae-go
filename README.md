@@ -2,7 +2,6 @@
 
 Based off [kujenga/docker-gae-go](https://github.com/kujenga/docker-gae-go)
 
-With the following changes:
+With a change to allow fast rebuilding (for now… until Google publishes that fix). See:
 
- * Admin host fixed
  * https://groups.google.com/forum/#!topic/google-appengine-go/k-r_hJ7W1dw
